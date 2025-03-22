@@ -1,25 +1,22 @@
 # Use an official Python image
 FROM python:3.9-slim
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy requirements.txt first for better caching
+# Copy requirements and install dependencies
 COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your application code
+# Install auto-instrumentation packages (based on installed libs like Flask, SQLAlchemy)
+RUN opentelemetry-bootstrap -a install
+
+# Copy the rest of the application code
 COPY . .
 
-# Expose the Flask port (if you're running on 3002)
+# Expose the Flask app's port
 EXPOSE 3002
 
-# Use OpenTelemetry auto-instrumentation on startup
-CMD ["opentelemetry-instrument", \
-     "--traces_exporter", "otlp_proto_http,console", \
-     "--metrics_exporter", "otlp_proto_http,console", \
-     "--service_name", "backend", \
-     "--exporter_otlp_endpoint", "http://otel-collector:4318", \
-     "python", "app.py"]
+# Start the app with OpenTelemetry auto-instrumentation
+#CMD ["opentelemetry-instrument","--traces_exporter=otlp,console","--metrics_exporter=otlp","--exporter_otlp_protocol=http/protobuf","--exporter_otlp_endpoint=http://otel-collector:4318","--service_name=backend","python", "app.py"]
+CMD ["opentelemetry-instrument","--traces_exporter=console,otlp","--metrics_exporter=console","--service_name=your-service-name","--exporter_otlp_endpoint=otel-collector:4317","python","app.py"]
