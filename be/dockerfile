@@ -1,0 +1,25 @@
+# Use an official Python image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy requirements.txt first for better caching
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of your application code
+COPY . .
+
+# Expose the Flask port (if you're running on 3002)
+EXPOSE 3002
+
+# Use OpenTelemetry auto-instrumentation on startup
+CMD ["opentelemetry-instrument", \
+     "--traces_exporter", "otlp_proto_http,console", \
+     "--metrics_exporter", "otlp_proto_http,console", \
+     "--service_name", "backend", \
+     "--exporter_otlp_endpoint", "http://otel-collector:4318", \
+     "python", "app.py"]
