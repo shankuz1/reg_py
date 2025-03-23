@@ -8,7 +8,20 @@ receivers:
         endpoint: 0.0.0.0:4317
       http:
         endpoint: 0.0.0.0:4318
-
+  filelog:
+    include: [ /var/log/app/backend.log ]
+    start_at: beginning
+    operators:
+      - type: regex_parser
+        regex: '(?P<time>\S+)\s+(?P<severity>[A-Z]+):\s+(?P<message>.*)'
+        parse_to: body
+        timestamp_format: '%Y-%m-%dT%H:%M:%S'
+        time_key: time
+      - type: severity_parser
+        parse_from: body.severity
+      - type: move
+        from: body.message
+        to: body
   # Defines a Prometheus configuration set.
   prometheus:
     # Define a set of configurations for scraping by the OpenTelemetry Collector.
@@ -199,6 +212,11 @@ service:
       processors: [batch]
       # Export to the `prometheusremtotewrite` exporter.
       exporters: [prometheusremotewrite]
+    logs:
+      receivers: [filelog]
+      processors: [batch]
+      exporters: [loki]
+
     #logs:
     #  receivers: [fluentforward]
     #  processors: [batch]

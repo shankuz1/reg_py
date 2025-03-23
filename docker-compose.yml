@@ -17,6 +17,8 @@ services:
   backend:
     image: dummy-be  # Use the locally built image
     container_name: backend
+    volumes:
+      - ./backend_logs:/app/logs
     restart: always
     ports:
       - "3002:3002"
@@ -36,6 +38,8 @@ services:
     image: otel/opentelemetry-collector-contrib:latest
     volumes:
       - ./otelcol-contrib-config.yaml:/etc/otelcol-contrib-config.yaml
+      # - ./sample.log:/var/log/sample.log
+      - ./backend_logs:/var/log/app
     ports:
       - "4317:4317"
       - "4318:4318"
