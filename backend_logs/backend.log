@@ -5,3 +5,7 @@
 {"timestamp": "2025-03-23 11:41:34,548", "severity": "INFO", "message": "Fetched all students", "trace_id": "01a47e4a2c1fdda40e55e1d6e1484113", "span_id": "3a561303a439e529"}
 {"timestamp": "2025-03-23 11:41:35,402", "severity": "INFO", "message": "Fetched all students", "trace_id": "18784c5d393d06afb6796c1daeafbd49", "span_id": "0733353ebb4c167d"}
 {"timestamp": "2025-03-23 11:41:36,034", "severity": "INFO", "message": "Fetched all students", "trace_id": "94e1723f199f7ab37985f172e45dbf70", "span_id": "4d3624e9e1f0fc9e"}
+{"timestamp": "2025-03-24 05:29:25,517", "severity": "INFO", "message": "Student registered: {'id': 16, 'firstName': 'sadasasd', 'lastName': 'asdasd', 'email': 'sdadas@gmail.com', 'dob': '2002-07-01'}", "trace_id": "1c0fe06be267dc1299289d1a6ef9f9fe", "span_id": "caebd5cbc89ad551"}
+{"timestamp": "2025-03-24 05:29:33,634", "severity": "INFO", "message": "Fetched all students", "trace_id": "ba90e1eb5f9a913204689291cde24d47", "span_id": "022e4090d80db7c0"}
+{"timestamp": "2025-03-24 06:59:21,468", "severity": "INFO", "message": "Fetched all students", "trace_id": "504b664625d783567f1de603ffc1f9fc", "span_id": "8ed30e76393a4b08"}
+{"timestamp": "2025-03-24 07:15:57,987", "severity": "INFO", "message": "Fetched all students", "trace_id": "c316185f911752326767977ee14237d1", "span_id": "8bd5e2412b28854a"}
