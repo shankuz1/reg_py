@@ -23,4 +23,4 @@ COPY . .
 EXPOSE 3002
 
 
-CMD ["opentelemetry-instrument","--traces_exporter=console,otlp","--metrics_exporter=console","--exporter_otlp_protocol=http/protobuf","--service_name=student-reg","--exporter_otlp_endpoint=http://otel-collector:4318","python","app.py"]
+CMD ["opentelemetry-instrument","--traces_exporter=console,otlp","--metrics_exporter=console,otlp","--exporter_otlp_protocol=http/protobuf","--service_name=student-reg","--exporter_otlp_endpoint=http://otel-collector:4318","python","app.py"]
