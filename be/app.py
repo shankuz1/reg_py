@@ -69,7 +69,7 @@ CORS(app, expose_headers=["traceparent", "tracestate"])
 # -------------------------------
 # Database Configuration
 # -------------------------------
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://myuser:mypassword@my-postgres:5432/studentnew'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://myuser:mypassword@my-postgres:5432/mydatabase'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
