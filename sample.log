@@ -1,0 +1,3 @@
+2024-03-22T13:15:12 INFO: Test log message one
+2024-03-22T13:15:13 ERROR: Something went wrong
+2024-03-22T13:15:14 DEBUG: Debugging message
